@@ -1,0 +1,8 @@
+header {
+    background-image: linear-gradient(to right, rgba(0, 99, 228), rgb(27, 7, 80));
+}
+
+.bg-dark {
+    background-color: rgb(23, 57, 88)!important;
+}
+
