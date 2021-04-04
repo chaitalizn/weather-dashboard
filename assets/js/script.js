@@ -2,6 +2,7 @@ var lat;
 var lon;
 var city;
 var cityList = [];
+var forecastCardBox = $('#forecast-five-day');
 
 if (!localStorage.getItem('cities')) {   
 localStorage.setItem('cities', JSON.stringify(cityList));
@@ -37,7 +38,7 @@ function findLatLon() {
                 var humidity = response.current.humidity;
                 var uvIndex = response.current.uvi;
 
-                $("#currentTemp").text("Temp: " + temp + " F");
+                $("#currentTemp").text("Temp: " + temp + " °F");
                 $("#currentWind").text("Wind: " + wind + " MPH");
                 $("#currentHumidity").text("Humidity: " + humidity + " %");
                 $('#currentUv').html('<p> UV Index: <span id="bg-color">' + uvIndex + '<span>');
@@ -76,6 +77,8 @@ function findLatLon() {
                 
                 console.log(response);
 
+                forecastCardBox.html('');
+
                 for (i = 0; i <= 5; i++) {
                     var dateObject = new Date(response.daily[i].dt * 1000);
                     var humanDateFormat = (dateObject.getDate() + "/" + dateObject.getMonth() + "/" + dateObject.getFullYear());
@@ -83,40 +86,43 @@ function findLatLon() {
                     var tempForecast = response.daily[i].temp.day;
                     var windForecast = response.daily[i].wind_speed;
                     var humidityForecast = response.daily[i].humidity;
-
                                      
                     createForecastBox();
 
                     function createForecastBox() {
                     var forecastCardDiv = $('<div>');
-                    forecastCardDiv.addClass('card-body');
-                    forecastCardDiv.attr('id', 'forecast-card');
+                    forecastCardDiv.addClass('col-md card text-white bg-dark mb-3');
+                    //forecastCardDiv.attr('id', 'forecast-card');
 
-                    var forecastDate = $('<h4>');
-                    forecastDate.addClass('card-title');
-                    forecastDate.text(humanDateFormat);
-                    $('#forecast-card').append(forecastDate);
-
-                    var forecastIcon = $('<img>');
-                    forecastIcon.attr('src', 'http://openweathermap.org/img/wn/' + iconForecast + '@2x.png')
-                    $('#forecast-card').append(forecastIcon);
+                    forecastCardDiv.html('<div class = "card-body"> <h4 class="card-title">' + humanDateFormat + ' </h4> <img class="icon" src="http://openweathermap.org/img/wn/' + iconForecast + '@2x.png"> <p class="card-text"> Temp: ' + tempForecast + ' °F </p> <p class="card-text"> Wind: ' + windForecast + ' MPH </p> <p class="card-text"> Humidity: ' + humidityForecast + '% </p>');
                     
-                    var forecastTemp = $('<p>');
-                    forecastTemp.addClass('card-text');
-                    forecastTemp.text('Temp: ' + tempForecast + ' F');
-                    $('#forecast-card').append(forecastTemp);
+                    forecastCardBox.append(forecastCardDiv);
 
-                    var forecastWind = $('<p>');
-                    forecastWind.addClass('card-text');
-                    forecastWind.text('Wind: ' + windForecast + ' MPH');
-                    $('#forecast-card').append(forecastWind);
+                    // var forecastDate = $('<h4>');
+                    // forecastDate.addClass('card-title');
+                    // forecastDate.text(humanDateFormat);
+                    // $('.day').append(forecastDate);
 
-                    var forecastHumidity = $('<p>');
-                    forecastHumidity.addClass('card-text');
-                    forecastHumidity.text('Humidity: ' + humidityForecast + ' %');
-                    $('#forecast-card').append(forecastHumidity);
+                    // var forecastIcon = $('<img>');
+                    // forecastIcon.attr('src', 'http://openweathermap.org/img/wn/' + iconForecast + '@2x.png')
+                    // $('#forecast-card').append(forecastIcon);
+                    
+                    // var forecastTemp = $('<p>');
+                    // forecastTemp.addClass('card-text');
+                    // forecastTemp.text('Temp: ' + tempForecast + ' °F');
+                    // $('#forecast-card').append(forecastTemp);
 
-                    $('#forecast-container').append(forecastCardDiv);
+                    // var forecastWind = $('<p>');
+                    // forecastWind.addClass('card-text');
+                    // forecastWind.text('Wind: ' + windForecast + ' MPH');
+                    // $('#forecast-card').append(forecastWind);
+
+                    // var forecastHumidity = $('<p>');
+                    // forecastHumidity.addClass('card-text');
+                    // forecastHumidity.text('Humidity: ' + humidityForecast + ' %');
+                    // $('#forecast-card').append(forecastHumidity);
+
+                    $('#forecast-five-day').append(forecastCardDiv);
                 
                     }
                 }
@@ -124,10 +130,13 @@ function findLatLon() {
         }
 
         futureWeather()
+        
 
 })
 }
 
+
+function myFunction() {
 $('#search').click(function(){
     city = $('#userCitySearch').val();
     findLatLon();
@@ -140,17 +149,33 @@ $('#search').click(function(){
     pastSearchBtn()
 
 })
-
-function pastSearchBtn() {
-
-    for (i = 0; i < historyList.length; i++) {
-        var btn = $('<button>');
-        btn.addClass('btn btn-secondary my-1 mb-2');
-        btn.attr('type', 'button');
-        btn.text(historyList[i]);
-        $('#past-search-btn').append(btn);
-    }
-    
 }
 
 
+function pastSearchBtn() {
+    
+    $('#past-search-btn').html('');
+
+    for (i = 0; i < historyList.length; i++) {
+        var btn = $('<button>');
+        btn.addClass('btn btn-secondary my-1 mb-2 past-btn');
+        btn.attr('type', 'button');
+        btn.text(historyList[i]);
+        btn.attr('value', historyList[i]);
+        $('#past-search-btn').append(btn);
+    }
+
+    $('#past-search-btn').addEventListener("click", pastButtonHandler)
+    
+}
+
+var pastButtonHandler = function(event) {
+    var targetEl = event.target;
+
+    if (targetEl.matches(".past-btn")) {
+        city = event.target.value;
+        findLatLon();
+    }
+}; 
+
+myFunction()
