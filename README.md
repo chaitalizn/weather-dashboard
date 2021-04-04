@@ -15,8 +15,8 @@ When the user search a city they are presented with current date and weather con
 
 ## Screencapture of progess anf final app screens
 ![pseudo code](assets/images/weather dashboard.png)
-![pseudo code](assets/images/Capture1.PNG)
-![pseudo code](assets/images/Capture2.PNG)
+![app on load](assets/images/Capture1.PNG)
+![after multiple search](assets/images/Capture2.PNG)
 
 ## Website
 (https://chaitalizn.github.io/weather-dashboard/)
