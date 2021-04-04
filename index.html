@@ -26,14 +26,14 @@
             <!--container for serach form-->
                 <h2 class="row">Search for a City</h2>
                 <form class="row me-2 border-bottom border-secondary">
-                    <input class="my-2" type="text" name="city" id="userCitySearch">
-                    <button type="button" class="btn btn-primary my-1 mb-3">Search</button>
+                    <input id="userCitySearch" class="my-2" type="text" name="city" >
+                    <button id="search" type="button" class="btn btn-primary my-1 mb-3">Search</button>
                 </form>
                            
             <!--container list of past search history-->
            
                
-                <div class="row me-2 my-3"><button type="button" class="btn btn-secondary">Search</button></div>
+                <div id="past-search-btn" class="row me-2 my-3"></div>
                 
             
         </div>
@@ -43,11 +43,11 @@
 
             <!--row for currant weather-->
             <div class="row border">
-                <h2 class="py-2">City name and date</h2>
-                <p>Temp:</p>
-                <p>Wind:</p>
-                <p>Humidity:</p>
-                <p>UV Index:</p>
+                <h2 id="city-date" class="py-2"></h2>
+                <p id="currentTemp">Temp:</p>
+                <p id="currentWind">Wind:</p>
+                <p id="currentHumidity">Humidity:</p>
+                <p id="currentUv">UV Index:</p>
             </div>
 
                 
@@ -59,54 +59,8 @@
             <!--row for 5 day forecast cards-->
             <div class="row gap-3">
                 <!--col and container for Day 1-->
-                <div class="col-md card text-white bg-dark mb-3">
-                    <div class="card-body">
-                        <h4 class="card-title">Day 1 Date</h4>
-                        <img href="" atl="">
-                        <p class="card-text">Temp:</p>
-                        <p class="card-text">Wind:</p>
-                        <p class="card-text">Humidity:</p>
-                    </div>
-                </div>
-                 <!--col and container for Day 1-->
-                 <div class="col-md card text-white bg-dark mb-3">
-                    <div class="card-body">
-                        <h4 class="card-title">Day 1 Date</h4>
-                        <img href="" atl="">
-                        <p class="card-text">Temp:</p>
-                        <p class="card-text">Wind:</p>
-                        <p class="card-text">Humidity:</p>
-                    </div>
-                </div>
-                 <!--col and container for Day 1-->
-                 <div class="col-md card text-white bg-dark mb-3">
-                    <div class="card-body">
-                        <h4 class="card-title">Day 1 Date</h4>
-                        <img href="" atl="">
-                        <p class="card-text">Temp:</p>
-                        <p class="card-text">Wind:</p>
-                        <p class="card-text">Humidity:</p>
-                    </div>
-                </div>
-                 <!--col and container for Day 1-->
-                 <div class="col-md card text-white bg-dark mb-3">
-                    <div class="card-body">
-                        <h4 class="card-title">Day 1 Date</h4>
-                        <img href="" atl="">
-                        <p class="card-text">Temp:</p>
-                        <p class="card-text">Wind:</p>
-                        <p class="card-text">Humidity:</p>
-                    </div>
-                </div>
-                 <!--col and container for Day 1-->
-                 <div class="col-md card text-white bg-dark mb-3">
-                    <div class="card-body">
-                        <h4 class="card-title">Day 1 Date</h4>
-                        <img href="" atl="">
-                        <p class="card-text">Temp:</p>
-                        <p class="card-text">Wind:</p>
-                        <p class="card-text">Humidity:</p>
-                    </div>
+                <div id="forecast-container" class="col-md card text-white bg-dark mb-3">
+                
                 </div>
                    
                 </div>
