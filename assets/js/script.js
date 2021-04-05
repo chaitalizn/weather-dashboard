@@ -159,3 +159,4 @@ var pastButtonHandler = function(event) {
 
 $('#past-search-btn').on("click", pastButtonHandler);
  
+console.log('test');
