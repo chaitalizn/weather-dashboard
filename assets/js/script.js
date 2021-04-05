@@ -11,7 +11,7 @@ var historyList = JSON.parse(localStorage.getItem('cities'));
 
 //API call for lat and lon
 function findLatLon() {
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=566ee57f3f41c9a418c16043339e7c83')
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=566ee57f3f41c9a418c16043339e7c83')
     .then(function(response) {
         return response.json();
     })
