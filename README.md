@@ -10,6 +10,7 @@ When the user search a city they are presented with current date and weather con
 * JavaScript
 * jQuery
 * Bootstrap
+* API
 
 ## Features include
 
